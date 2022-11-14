@@ -8,5 +8,7 @@ namespace Website.Application.Features.Comments.Constants
 {
     public static class CommentMessages
     {
+        public const string CommentDoesNotExist = "Comment does not exist";
+        public const string CommentCantHaveMultipleParent = "Comment can only have one parent.";
     }
 }

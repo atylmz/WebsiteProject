@@ -46,14 +46,6 @@ namespace Website.Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-            modelBuilder.Entity<Article>().HasMany(x => x.ParentArticles).WithOne(x => x.ParentArticle)
-               .HasForeignKey(x => x.ParentId).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Category>().HasMany(x => x.ParentCategories).WithOne(x => x.ParentCategory)
-                .HasForeignKey(x => x.ParentId).OnDelete(DeleteBehavior.SetNull);
-            modelBuilder.Entity<Comment>().HasMany(x => x.ParentComments).WithOne(x => x.ParentComment)
-                .HasForeignKey(x => x.ParentId).OnDelete(DeleteBehavior.SetNull);
-
         }
     }
 }

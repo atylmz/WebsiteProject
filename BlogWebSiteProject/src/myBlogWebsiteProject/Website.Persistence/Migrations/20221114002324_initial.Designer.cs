@@ -12,8 +12,8 @@ using Website.Persistence.Contexts;
 namespace Website.Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20221113224141_mig_delete")]
-    partial class migdelete
+    [Migration("20221114002324_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -674,8 +674,7 @@ namespace Website.Persistence.Migrations
 
                     b.HasOne("Website.Domain.Entites.Article", "ParentArticle")
                         .WithMany("ParentArticles")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("Author");
 
@@ -746,8 +745,7 @@ namespace Website.Persistence.Migrations
                 {
                     b.HasOne("Website.Domain.Entites.Category", "ParentCategory")
                         .WithMany("ParentCategories")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("ParentCategory");
                 });
@@ -762,8 +760,7 @@ namespace Website.Persistence.Migrations
 
                     b.HasOne("Website.Domain.Entites.Comment", "ParentComment")
                         .WithMany("ParentComments")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("Article");
 

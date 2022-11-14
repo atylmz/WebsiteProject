@@ -671,8 +671,7 @@ namespace Website.Persistence.Migrations
 
                     b.HasOne("Website.Domain.Entites.Article", "ParentArticle")
                         .WithMany("ParentArticles")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("Author");
 
@@ -743,8 +742,7 @@ namespace Website.Persistence.Migrations
                 {
                     b.HasOne("Website.Domain.Entites.Category", "ParentCategory")
                         .WithMany("ParentCategories")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("ParentCategory");
                 });
@@ -759,8 +757,7 @@ namespace Website.Persistence.Migrations
 
                     b.HasOne("Website.Domain.Entites.Comment", "ParentComment")
                         .WithMany("ParentComments")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("Article");
 

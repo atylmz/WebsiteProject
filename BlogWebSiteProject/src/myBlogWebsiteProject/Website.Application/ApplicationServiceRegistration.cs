@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Website.Application.Services.AuthService;
 using Website.Application.Services.CategoryService;
+using Website.Application.Services.CommentService;
 using Website.Application.Services.UserSevice;
 
 namespace Application
@@ -36,6 +37,7 @@ namespace Application
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICommentService, CommentManager>();
 
             services.AddSingleton<IMailService, MailKitMailService>();
 

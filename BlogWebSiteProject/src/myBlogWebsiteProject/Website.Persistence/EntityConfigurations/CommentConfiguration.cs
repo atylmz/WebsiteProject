@@ -21,7 +21,7 @@ namespace Website.Persistence.EntityConfigurations
             builder.Property(p => p.Published).HasColumnName("Published");
             builder.Property(p => p.PublishedAt).HasColumnName("PublishedAt");
             builder.Property(p => p.Content).HasColumnName("Content");
-            //builder.HasOne(p => p.ParentComment).WithMany(p => p.ParentComments).HasForeignKey(p => p.ParentId).OnDelete(DeleteBehavior.NoAction).IsRequired(false);
+            builder.HasOne(p => p.ParentComment).WithMany(p => p.ParentComments).HasForeignKey(p => p.ParentId);
             builder.HasOne(p => p.Article);
         }
     }

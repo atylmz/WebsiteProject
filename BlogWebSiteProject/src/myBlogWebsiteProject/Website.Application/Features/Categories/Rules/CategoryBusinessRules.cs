@@ -43,7 +43,7 @@ namespace Website.Application.Features.Categories.Rules
 
         public async Task CategoryShouldBeExistWhenDelete(int id)
         {
-            Category? category = await _categoryRepository.GetAsync(x => x.Id == id);
+            Category? category = await _categoryRepository.GetAsync(x => x.Id == id, enableTracking: false);
             if (category is null)
                 throw new BusinessException(CategoryMessages.CategoryDoesNotExist);
         }

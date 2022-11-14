@@ -10,6 +10,6 @@ namespace Website.Application.Services.CommentService
     public interface ICommentService
     {
         public Task<Comment> CreateComment(Comment comment);
-        public Task<Comment> DeleteComment(Category comment);
+        public Task<Comment> DeleteComment(Comment comment);
     }
 }

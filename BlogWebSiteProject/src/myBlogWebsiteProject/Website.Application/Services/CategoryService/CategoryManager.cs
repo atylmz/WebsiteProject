@@ -29,12 +29,22 @@ namespace Website.Application.Services.CategoryService
 
         public async Task<Category> DeleteCategory(Category category)
         {
-            //Category? deleteCategory = await _categoryRepository.GetAsync(x => x.Id == category.Id);
-            //IList<Category> listOfCategories = await GetSubCategories(deleteCategory);
-            //if (listOfCategories.Count > 0)
-            //    foreach (var item in listOfCategories)
-            //        await _categoryRepository.DeleteAsync(item);
-            Category deleteCategory = await _categoryRepository.DeleteAsync(category);
+            Category? deleteCategory = await _categoryRepository.GetAsync(x => x.Id == category.Id,enableTracking: false);
+            
+            if (deleteCategory.Id == deleteCategory.ParentId)
+            {
+                IList<Category> listOfCategories = await GetSubCategories(deleteCategory);
+                if (listOfCategories.Count > 0)
+                    foreach (var item in listOfCategories)
+                        await _categoryRepository.DeleteAsync(item);
+            }
+            else
+            {
+                deleteCategory.ParentId = null;
+                deleteCategory = await _categoryRepository.UpdateAsync(deleteCategory);
+                deleteCategory = await _categoryRepository.DeleteAsync(deleteCategory);
+            }
+          
             return deleteCategory;
         }
 

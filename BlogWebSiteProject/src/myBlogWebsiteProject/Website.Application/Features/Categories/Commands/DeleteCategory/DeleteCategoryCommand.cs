@@ -37,8 +37,7 @@ namespace Website.Application.Features.Categories.Commands.DeleteCategory
                 await _categoryBusinessRules.CategoryShouldBeExistWhenDelete(request.Id);
 
                 Category mappedCategory = _mapper.Map<Category>(request);
-                Category deletedCategory = await _categoryRepository.DeleteAsync(mappedCategory);
-                //Category deletedCategory = await _categoryService.DeleteCategory(mappedCategory);
+                Category deletedCategory = await _categoryService.DeleteCategory(mappedCategory);
                 DeletedCategoryDto deletedCategoryDto = _mapper.Map<DeletedCategoryDto>(deletedCategory);
 
                 return deletedCategoryDto;

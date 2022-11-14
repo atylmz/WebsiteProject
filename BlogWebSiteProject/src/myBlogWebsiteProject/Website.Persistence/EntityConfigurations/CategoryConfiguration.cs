@@ -20,8 +20,7 @@ namespace Website.Persistence.EntityConfigurations
             builder.Property(p => p.MetaTitle).HasColumnName("MetaTitle");
             builder.Property(p => p.Slug).HasColumnName("Slug");
             builder.Property(p => p.Content).HasColumnName("Content");
-            //builder.HasMany(x=>x.ParentCategories).WithOptional(x=>x.ParentCategories).HasForeignKey(p => p.ParentId)
-            //    .OnDelete(DeleteBehavior.NoAction).IsRequired(false);
+            builder.HasMany(x => x.ParentCategories).WithOne(x => x.ParentCategory).HasForeignKey(p => p.ParentId);
             builder.HasMany(p => p.ArticleCategories);
         }
     }
