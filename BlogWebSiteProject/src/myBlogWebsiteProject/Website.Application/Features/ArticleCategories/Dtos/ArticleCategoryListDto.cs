@@ -1,8 +1,9 @@
-﻿namespace Website.Application.Features.ArticleCategories.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.ArticleCategories.Dtos
 {
-    public class ArticleCategoryListDto
+    public class ArticleCategoryListDto : BaseDto
     {
-        public int Id { get; set; }
         public int ArticleId { get; set; }
         public int CategoryId { get; set; }
         public string ArticleTitle { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Persistence.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Website.Application.Features.UserOperationClaims.Dtos
 {
-    public class DeletedUserOperationClaimDto
+    public class DeletedUserOperationClaimDto : BaseDto
     {
-        public int Id { get; set; }
     }
 }

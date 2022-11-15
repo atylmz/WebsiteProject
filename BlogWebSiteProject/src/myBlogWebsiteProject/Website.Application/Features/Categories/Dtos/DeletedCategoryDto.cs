@@ -1,7 +1,8 @@
-﻿namespace Website.Application.Features.Categories.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.Categories.Dtos
 {
-    public class DeletedCategoryDto
+    public class DeletedCategoryDto : BaseDto
     {
-        public int Id { get; set; }
     }
 }

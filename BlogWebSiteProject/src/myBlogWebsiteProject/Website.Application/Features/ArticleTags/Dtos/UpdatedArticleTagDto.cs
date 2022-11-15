@@ -1,8 +1,9 @@
-﻿namespace Website.Application.Features.ArticleTags.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.ArticleTags.Dtos
 {
-    public class UpdatedArticleTagDto
+    public class UpdatedArticleTagDto : BaseDto
     {
-        public int Id { get; set; }
         public int ArticleId { get; set; }
         public int TagId { get; set; }
     }

@@ -1,8 +1,9 @@
-﻿namespace Website.Application.Features.Authors.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.Authors.Dtos
 {
-    public class DeletedAuthorDto
+    public class DeletedAuthorDto : BaseDto
     {
-        public int Id { get; set; }
     }
 
 }

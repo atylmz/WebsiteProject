@@ -16,6 +16,7 @@ namespace Website.Application.Services.CommentService
         public async Task<Comment> CreateComment(Comment comment)
         {
             if (comment.Published) comment.PublishedAt = DateTime.UtcNow;
+            else comment.PublishedAt = null;
 
             if (comment.ParentId == 0)
                 return await CreateMainComment(comment);

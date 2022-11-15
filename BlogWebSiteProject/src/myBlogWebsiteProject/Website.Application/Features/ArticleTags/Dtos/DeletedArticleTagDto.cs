@@ -1,7 +1,8 @@
-﻿namespace Website.Application.Features.ArticleTags.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.ArticleTags.Dtos
 {
-    public class DeletedArticleTagDto
+    public class DeletedArticleTagDto : BaseDto
     {
-        public int Id { get; set; }
     }
 }

@@ -1,8 +1,9 @@
-﻿namespace Website.Application.Features.Comments.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.Comments.Dtos
 {
-    public class CommentListDto
+    public class CommentListDto : BaseDto
     {
-        public int Id { get; set; }
         public int ArticleId { get; set; }
         public string AticleTitle { get; set; }
         public int ParentId { get; set; }

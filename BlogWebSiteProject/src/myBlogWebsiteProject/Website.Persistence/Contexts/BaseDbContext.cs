@@ -1,5 +1,7 @@
-﻿using Core.Security.Entities;
+﻿using Core.Persistence.Repositories;
+using Core.Security.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -36,11 +38,26 @@ namespace Website.Persistence.Contexts
             Configuration = configuration;
         }
 
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+
+            IEnumerable<EntityEntry<Entity>> datas = ChangeTracker
+                .Entries<Entity>().Where(e =>
+                    e.State == EntityState.Added || e.State == EntityState.Modified);
+
+            foreach (var data in datas)
+            {
+                _ = data.State switch
+                {
+                    EntityState.Added => data.Entity.CreatedDate = DateTime.UtcNow,
+                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.UtcNow
+                };
+            }
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //    base.OnConfiguring(
-            //        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("RentACarConnectionString")));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

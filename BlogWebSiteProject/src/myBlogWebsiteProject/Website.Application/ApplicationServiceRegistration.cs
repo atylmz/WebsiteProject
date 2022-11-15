@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Website.Application.Services.ArticleService;
 using Website.Application.Services.AuthService;
 using Website.Application.Services.CategoryService;
 using Website.Application.Services.CommentService;
@@ -38,6 +39,7 @@ namespace Application
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICommentService, CommentManager>();
+            services.AddScoped<IArticleService, ArticleManager>();
 
             services.AddSingleton<IMailService, MailKitMailService>();
 

@@ -1,10 +1,5 @@
 ﻿using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.ArticleCategories.Constants;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
@@ -26,14 +21,14 @@ namespace Website.Application.Features.ArticleCategories.Rules
 
         public async Task ArticleShouldBeExistWhenCreate(int articleId)
         {
-            Article? article = await _articleRepository.GetAsync(x=>x.Id == articleId, enableTracking: false);
+            Article? article = await _articleRepository.GetAsync(x => x.Id == articleId, enableTracking: false);
             if (article == null)
                 throw new BusinessException(ArticleCategoryMessages.ArticleDoesNotExist);
         }
 
         public async Task CategoryShouldBeExistWhenCreate(int categoryId)
         {
-            Category? category = await _categoryRepository.GetAsync(x=>x.Id==categoryId, enableTracking: false);
+            Category? category = await _categoryRepository.GetAsync(x => x.Id == categoryId, enableTracking: false);
             if (category is null)
                 throw new BusinessException(ArticleCategoryMessages.CategoryDoesNotExist);
         }
@@ -53,7 +48,7 @@ namespace Website.Application.Features.ArticleCategories.Rules
 
         public async Task ArticleCategoryShouldBeExistWhenUpdate(int id)
         {
-            ArticleCategory? articleCategory = await _articleCategoryRepository.GetAsync(x=>x.Id == id, enableTracking: false);
+            ArticleCategory? articleCategory = await _articleCategoryRepository.GetAsync(x => x.Id == id, enableTracking: false);
             if (articleCategory is null)
                 throw new BusinessException(ArticleCategoryMessages.ArticleCategoryDoesNotExist);
         }

@@ -1,7 +1,8 @@
-﻿namespace Website.Application.Features.Comments.Dtos
+﻿using Core.Persistence.Repositories;
+
+namespace Website.Application.Features.Comments.Dtos
 {
-    public class DeletedCommentDto
+    public class DeletedCommentDto : BaseDto
     {
-        public int Id { get; set; }
     }
 }

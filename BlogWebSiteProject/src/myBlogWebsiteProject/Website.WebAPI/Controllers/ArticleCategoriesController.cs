@@ -1,5 +1,4 @@
 ﻿using Core.Application.Requests;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Website.Application.Features.ArticleCategories.Commands.CreateArticleCategory;
 using Website.Application.Features.ArticleCategories.Commands.DeleteArticleCategory;
