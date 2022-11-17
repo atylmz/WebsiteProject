@@ -9,7 +9,7 @@ namespace Website.Application.Features.Users.Constants
     public static class OperationClaims
     {
         public const string UserAdd = "user.Add";
-        public const string UserUPdate = "user.Update";
+        public const string UserUpdate = "user.Update";
         public const string UserDelete = "user.Delete";
     }
 }

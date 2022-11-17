@@ -1,4 +1,5 @@
 ﻿using Core.Security.Entities;
+using Core.Security.Hashing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -23,6 +24,29 @@ namespace Website.Persistence.EntityConfigurations
             builder.Property(u => u.PasswordHash).HasColumnName("PasswordHash");
             builder.Property(u => u.Status).HasColumnName("Status").HasDefaultValue(true);
             builder.Property(u => u.AuthenticatorType).HasColumnName("AuthenticatorType");
+
+
+            User user = new()
+            {
+                Id = 1,
+                FirstName = "Admin",
+                LastName = "Admin",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                AuthenticatorType = Core.Security.Enums.AuthenticatorType.Email,
+                Email = "admin@admin.com",
+                Status = true,
+
+            };
+            byte[] passwordHash, passwordSalt;
+
+            HashingHelper.CreatePasswordHash("admin" , out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            User[] userSeed = new[] { user };
+
+            builder.HasData(userSeed);
         }
     }
 }

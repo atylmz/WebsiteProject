@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.Comments.Dtos;
 using Website.Application.Features.Comments.Rules;
 using Website.Application.Services.CommentService;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Comments.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Comments.Commands.DeleteComment
 {
-    public class DeleteCommentCommand : IRequest<DeletedCommentDto>
+    public class DeleteCommentCommand : IRequest<DeletedCommentDto>, ISecuredRequest
     {
         public int Id { get; set; }
+
+        public string[] Roles => new[] { Admin, CommentDelete };
 
         public class DeleteCommandCommandHandler : IRequestHandler<DeleteCommentCommand, DeletedCommentDto>
         {

@@ -1,18 +1,16 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.Categories.Dtos;
 using Website.Application.Features.Categories.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Categories.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Categories.Commands.UpdateCategory
 {
-    public class UpdateCategoryCommand : IRequest<UpdatedCategoryDto>
+    public class UpdateCategoryCommand : IRequest<UpdatedCategoryDto>, ISecuredRequest
     {
         public int Id { get; set; }
         public int ParentId { get; set; }
@@ -20,6 +18,8 @@ namespace Website.Application.Features.Categories.Commands.UpdateCategory
         public string MetaTitle { get; set; }
         public string Slug { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] {Admin, CategoryUpdate};
 
         public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, UpdatedCategoryDto>
         {

@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.ArticleCategories.Dtos;
 using Website.Application.Features.ArticleCategories.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.ArticleCategories.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.ArticleCategories.Commands.DeleteArticleCategory
 {
-    public class DeleteArticleCategoryCommand : IRequest<DeletedArticleCategoryDto>
+    public class DeleteArticleCategoryCommand : IRequest<DeletedArticleCategoryDto>, ISecuredRequest
     {
         public int Id { get; set; }
+
+        public string[] Roles => new[] { Admin, ArticleCategoryDelete };
 
         public class DeleteArticleCategoryCommandHandler : IRequestHandler<DeleteArticleCategoryCommand, DeletedArticleCategoryDto>
         {

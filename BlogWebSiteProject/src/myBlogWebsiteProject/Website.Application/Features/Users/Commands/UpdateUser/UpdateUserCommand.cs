@@ -19,7 +19,7 @@ namespace Website.Application.Features.Users.Commands.UpdateUser
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public string[] Roles => new[] { Admin, UserUPdate };
+        public string[] Roles => new[] { Admin, UserUpdate };
 
         public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UpdatedUserDto>
         {

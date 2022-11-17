@@ -4,14 +4,18 @@ using Website.Application.Features.ArticleTags.Dtos;
 using Website.Application.Features.ArticleTags.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.ArticleTags.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.ArticleTags.Commands.CreateArticleTag
 {
-    public class CreateArticleTagCommand : IRequest<CreatedArticleTagDto>
+    public class CreateArticleTagCommand : IRequest<CreatedArticleTagDto>, ISecuredRequest
     {
-        public int Id { get; set; }
         public int ArticleId { get; set; }
         public int TagId { get; set; }
+
+        public string[] Roles => new[] { Admin, ArticleTagAdd };
 
         public class CreateArticleTagCommandHandler : IRequestHandler<CreateArticleTagCommand, CreatedArticleTagDto>
         {

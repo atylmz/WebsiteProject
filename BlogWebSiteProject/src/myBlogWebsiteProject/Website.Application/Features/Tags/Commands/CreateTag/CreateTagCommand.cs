@@ -3,15 +3,20 @@ using MediatR;
 using Website.Application.Features.Tags.Dtos;
 using Website.Application.Features.Tags.Rules;
 using Website.Application.Services.Repositories;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Tags.Contants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Tags.Commands.CreateTag
 {
-    public class CreateTagCommand : IRequest<CreatedTagDto>
+    public class CreateTagCommand : IRequest<CreatedTagDto>, ISecuredRequest
     {
         public string Title { get; set; }
         public string MetaTitle { get; set; }
         public string Slug { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] { Admin, TagAdd };
 
         public class CreateTagCommandHandler : IRequestHandler<CreateTagCommand, CreatedTagDto>
         {

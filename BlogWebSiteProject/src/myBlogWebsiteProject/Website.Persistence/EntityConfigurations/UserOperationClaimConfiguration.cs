@@ -20,6 +20,9 @@ namespace Website.Persistence.EntityConfigurations
             builder.HasIndex(u => new { u.UserId, u.OperationClaimId }, "UK_UserOperationClaims_UserId_OperationClaimId").IsUnique();
             builder.HasOne(u => u.User);
             builder.HasOne(u => u.OperationClaim);
+
+            UserOperationClaim[] userOperationClaimSeedData = new UserOperationClaim[] { new(1, 1, 1) };
+            builder.HasData(userOperationClaimSeedData);
         }
     }
 }

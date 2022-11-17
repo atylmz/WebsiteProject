@@ -1,22 +1,22 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.ArticleTags.Dtos;
 using Website.Application.Features.ArticleTags.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.ArticleTags.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.ArticleTags.Commands.UpdateArticleTag
 {
-    public class UpdateArticleTagCommand : IRequest<UpdatedArticleTagDto>
+    public class UpdateArticleTagCommand : IRequest<UpdatedArticleTagDto>, ISecuredRequest
     {
         public int Id { get; set; }
         public int ArticleId { get; set; }
         public int TagId { get; set; }
+
+        public string[] Roles => new[] { Admin, ArticleTagUpdate };
 
         public class UpdateArticleTagCommandHandler : IRequestHandler<UpdateArticleTagCommand, UpdatedArticleTagDto>
         {

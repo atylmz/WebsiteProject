@@ -4,12 +4,17 @@ using Website.Application.Features.ArticleTags.Dtos;
 using Website.Application.Features.ArticleTags.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.ArticleTags.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.ArticleTags.Commands.DeleteArticleTag
 {
-    public class DeleteArticleTagCommand : IRequest<DeletedArticleTagDto>
+    public class DeleteArticleTagCommand : IRequest<DeletedArticleTagDto>, ISecuredRequest
     {
         public int Id { get; set; }
+
+        public string[] Roles => new[] { Admin, ArticleTagDelete };
 
         public class DeleteArticleTagCommandHandler : IRequestHandler<DeleteArticleTagCommand, DeletedArticleTagDto>
         {

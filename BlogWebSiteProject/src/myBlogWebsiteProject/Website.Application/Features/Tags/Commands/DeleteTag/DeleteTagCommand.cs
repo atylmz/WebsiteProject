@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.Tags.Dtos;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Tags.Contants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Tags.Commands.DeleteTag
 {
-    public class DeleteTagCommand : IRequest<DeletedTagDto>
+    public class DeleteTagCommand : IRequest<DeletedTagDto>, ISecuredRequest
     {
         public int Id { get; set; }
+
+        public string[] Roles => new[] { Admin, TagDelete };
 
         public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, DeletedTagDto>
         {

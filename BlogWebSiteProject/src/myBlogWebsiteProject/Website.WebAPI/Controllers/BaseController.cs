@@ -1,9 +1,11 @@
 ﻿using Core.Security.Extensions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Website.WebAPI.Controllers
 {
+    [Authorize]
     public class BaseController : ControllerBase
     {
         private IMediator? _mediator;

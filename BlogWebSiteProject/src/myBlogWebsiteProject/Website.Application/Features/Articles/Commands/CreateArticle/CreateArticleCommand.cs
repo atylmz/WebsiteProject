@@ -1,20 +1,17 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.Articles.Dtos;
 using Website.Application.Features.Articles.Rules;
 using Website.Application.Services.ArticleService;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Articles.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Articles.Commands.CreateArticle
 {
-    public class CreateArticleCommand : IRequest<CreatedArticleDto>
+    public class CreateArticleCommand : IRequest<CreatedArticleDto>, ISecuredRequest
     {
-        public int Id { get; set; }
         public int AuthorId { get; set; }
         public int? ParentId { get; set; }
         public string Title { get; set; }
@@ -24,6 +21,8 @@ namespace Website.Application.Features.Articles.Commands.CreateArticle
         public DateTime? PublishedAt { get; set; }
         public bool Published { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] {Admin, ArticleAdd };
 
         public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand, CreatedArticleDto>
         {

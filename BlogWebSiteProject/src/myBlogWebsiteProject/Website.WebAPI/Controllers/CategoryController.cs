@@ -1,4 +1,5 @@
 ﻿using Core.Application.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Website.Application.Features.Categories.Commands.CreateCategory;

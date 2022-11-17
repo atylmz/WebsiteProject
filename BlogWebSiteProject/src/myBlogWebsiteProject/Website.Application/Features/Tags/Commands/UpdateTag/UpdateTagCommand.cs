@@ -1,24 +1,24 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.Tags.Dtos;
 using Website.Application.Features.Tags.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Tags.Contants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Tags.Commands.UpdateTag
 {
-    public class UpdateTagCommand : IRequest<UpdatedTagDto>
+    public class UpdateTagCommand : IRequest<UpdatedTagDto>, ISecuredRequest
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string MetaTitle { get; set; }
         public string Slug { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] { Admin, TagUpdate };
 
         public class UpdateTagCommandHandler : IRequestHandler<UpdateTagCommand, UpdatedTagDto>
         {

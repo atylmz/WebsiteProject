@@ -1,23 +1,22 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.ArticleMetas.Dtos;
 using Website.Application.Features.ArticleMetas.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.ArticleMetas.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.ArticleMetas.Commands.CreateArticleMeta
 {
-    public class CreateArticleMetaCommand : IRequest<CreatedArticleMetaDto>
+    public class CreateArticleMetaCommand : IRequest<CreatedArticleMetaDto>, ISecuredRequest
     {
-        public int Id { get; set; }
         public int ArticleId { get; set; }
         public string Key { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] { Admin, ArticleMetasAdd };
 
         public class CreateArticleCommandHandler : IRequestHandler<CreateArticleMetaCommand, CreatedArticleMetaDto>
         {

@@ -4,10 +4,13 @@ using Website.Application.Features.Articles.Dtos;
 using Website.Application.Features.Articles.Rules;
 using Website.Application.Services.ArticleService;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Articles.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Articles.Commands.UpdateArticle
 {
-    public class UpdateArticleCommand : IRequest<UpdatedArticleDto>
+    public class UpdateArticleCommand : IRequest<UpdatedArticleDto>, ISecuredRequest
     {
         public int Id { get; set; }
         public int AuthorId { get; set; }
@@ -19,6 +22,8 @@ namespace Website.Application.Features.Articles.Commands.UpdateArticle
         public DateTime? PublishedAt { get; set; }
         public bool Published { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] { Admin, ArticleUpdate };
 
         public class UpdateArticleCommandHandler : IRequestHandler<UpdateArticleCommand, UpdatedArticleDto>
         {

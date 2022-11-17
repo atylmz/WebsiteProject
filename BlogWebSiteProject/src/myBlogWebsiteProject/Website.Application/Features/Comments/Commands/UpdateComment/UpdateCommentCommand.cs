@@ -1,18 +1,16 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Website.Application.Features.Comments.Dtos;
 using Website.Application.Features.Comments.Rules;
 using Website.Application.Services.Repositories;
 using Website.Domain.Entites;
+using static Website.Domain.Constants.OperationClaims;
+using static Website.Application.Features.Comments.Constants.OperationClaims;
+using Core.Application.Pipelines.Authorization;
 
 namespace Website.Application.Features.Comments.Commands.UpdateComment
 {
-    public class UpdateCommentCommand : IRequest<UpdatedCommentDto>
+    public class UpdateCommentCommand : IRequest<UpdatedCommentDto>, ISecuredRequest
     {
         public int Id { get; set; }
         public int ArticleId { get; set; }
@@ -21,6 +19,8 @@ namespace Website.Application.Features.Comments.Commands.UpdateComment
         public bool Published { get; set; }
         public DateTime? PublishedAt { get; set; }
         public string Content { get; set; }
+
+        public string[] Roles => new[] { Admin, CommentUpdate };
 
         public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand, UpdatedCommentDto>
         {

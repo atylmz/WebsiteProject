@@ -18,6 +18,10 @@ namespace Website.Persistence.EntityConfigurations
             builder.Property(e => e.ActivationKey).HasColumnName("ActivationKey");
             builder.Property(e => e.IsVerified).HasColumnName("IsVerified");
             builder.HasOne(e => e.User);
+
+
+            EmailAuthenticator[] emailAuthenticatorsSeedData = { new(1, 1, "admin", true) };
+            builder.HasData(emailAuthenticatorsSeedData);
         }
     }
 }
