@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Website.WebAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class BaseController : ControllerBase
     {
         private IMediator? _mediator;

@@ -43,8 +43,8 @@ namespace Website.Application.Features.Auths.Commands.EnableEmailAuthenticator
                 await _authBusinessRules.UserShouldBeExists(user);
                 await _authBusinessRules.UserShouldNotBeHaveAuthenticator(user);
 
-                user.AuthenticatorType = Core.Security.Enums.AuthenticatorType.Email;
-                await _userService.Update(user);
+                //user.AuthenticatorType = Core.Security.Enums.AuthenticatorType.Email;
+                //await _userService.Update(user);
 
                 EmailAuthenticator emailAuthenticator = await _authService.CreateEmailAuthenticator(user);
                 EmailAuthenticator addedEmailAuthenticator = await _emailAuthenticatorRepository.AddAsync(emailAuthenticator);

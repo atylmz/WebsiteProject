@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Website.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Creation : Migration
+    public partial class creation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -404,7 +404,12 @@ namespace Website.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "Email", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Status", "UpdatedDate" },
-                values: new object[] { 1, 1, new DateTime(2022, 11, 18, 2, 26, 5, 591, DateTimeKind.Local).AddTicks(5235), "admin@admin.com", "Admin", "Admin", new byte[] { 8, 92, 150, 84, 17, 214, 137, 27, 218, 179, 153, 123, 55, 75, 45, 45, 232, 172, 112, 237, 88, 133, 185, 225, 216, 236, 157, 139, 149, 209, 36, 181, 149, 181, 84, 161, 191, 226, 187, 213, 20, 214, 73, 181, 206, 65, 177, 76, 116, 98, 175, 231, 16, 62, 39, 201, 176, 98, 93, 182, 213, 43, 152, 84 }, new byte[] { 97, 4, 184, 45, 150, 168, 4, 167, 226, 100, 165, 117, 25, 95, 167, 241, 179, 64, 192, 127, 205, 15, 227, 105, 60, 198, 13, 107, 9, 212, 10, 97, 170, 221, 223, 49, 31, 112, 135, 191, 254, 83, 140, 40, 105, 255, 174, 221, 255, 108, 113, 80, 213, 93, 70, 201, 201, 109, 87, 150, 4, 186, 175, 215, 131, 236, 191, 3, 41, 111, 32, 42, 11, 151, 42, 208, 16, 176, 196, 243, 52, 90, 79, 159, 121, 112, 122, 241, 212, 138, 216, 14, 85, 133, 103, 225, 214, 139, 139, 131, 236, 17, 18, 129, 33, 115, 110, 52, 212, 121, 131, 210, 23, 37, 11, 3, 93, 163, 185, 104, 231, 108, 255, 98, 223, 208, 73, 153 }, true, new DateTime(2022, 11, 18, 2, 26, 5, 591, DateTimeKind.Local).AddTicks(5247) });
+                values: new object[] { 1, 1, new DateTime(2022, 11, 23, 21, 24, 46, 798, DateTimeKind.Local).AddTicks(1516), "admin@admin.com", "Admin", "Admin", new byte[] { 182, 29, 223, 234, 31, 223, 146, 64, 0, 19, 87, 156, 212, 164, 232, 215, 74, 132, 198, 113, 14, 169, 196, 243, 217, 1, 180, 52, 123, 82, 10, 178, 54, 185, 64, 227, 58, 19, 67, 184, 89, 133, 243, 137, 32, 48, 23, 147, 103, 4, 104, 54, 33, 234, 120, 59, 119, 168, 30, 208, 61, 42, 242, 201 }, new byte[] { 99, 115, 167, 141, 175, 81, 162, 207, 201, 179, 221, 151, 233, 104, 11, 218, 120, 81, 242, 46, 255, 191, 12, 161, 187, 240, 145, 135, 166, 209, 194, 160, 196, 95, 195, 143, 248, 14, 217, 116, 184, 232, 177, 200, 44, 208, 144, 139, 67, 255, 1, 127, 120, 53, 29, 172, 80, 188, 29, 155, 205, 39, 133, 33, 179, 150, 32, 57, 104, 242, 132, 89, 251, 155, 42, 200, 164, 59, 198, 210, 128, 232, 114, 229, 12, 139, 79, 139, 184, 185, 92, 190, 205, 19, 21, 144, 56, 142, 135, 189, 186, 24, 93, 227, 54, 207, 228, 81, 43, 56, 129, 95, 204, 45, 171, 177, 250, 110, 168, 69, 34, 31, 41, 108, 44, 28, 217, 62 }, true, new DateTime(2022, 11, 23, 21, 24, 46, 798, DateTimeKind.Local).AddTicks(1525) });
+
+            migrationBuilder.InsertData(
+                table: "EmailAuthenticators",
+                columns: new[] { "Id", "ActivationKey", "CreatedDate", "IsVerified", "UpdatedDate", "UserId" },
+                values: new object[] { 1, "admin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
